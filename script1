@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Переключаемся на главную ветку (например - master)
+git checkout master
+
+# Удаляем все ветки, кроме master
+git branch | grep -v "master" | xargs git branch -D
+
+# Удаляем все отслеживаемые файлы
+git clean -f -d
+
+# Удаляем все неотслеживаемые файлы
+git clean -f -d -x
+
+# Сбрасываем все изменения
+git reset --hard
+
+# Синхронизируем удаленный репозиторий с локальным
+git pull origin master
+
+# Финальное сообщение
+echo "Репозиторий очищен от всех изменений"
